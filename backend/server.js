@@ -32,7 +32,7 @@ app.use(express.json());
 app.use("/api/notes", notes);
 
 // 🔹 Serve Frontend (Production Only)
-const frontendPath = path.join(__dirname, "frontend", "thinkbook", "dist");
+const frontendPath = path.join(__dirname, "..", "frontend", "thinkbook", "dist");
 
 if (process.env.NODE_ENV === "production") {
   if (fs.existsSync(frontendPath)) {
@@ -42,7 +42,9 @@ if (process.env.NODE_ENV === "production") {
       res.sendFile(path.join(frontendPath, "index.html"));
     });
   } else {
-    console.error("❌ Frontend build not found. Run `npm run build` inside frontend/thinkbook");
+    console.error(
+      "❌ Frontend build not found. Did you run `npm run build` inside frontend/thinkbook?"
+    );
   }
 }
 
